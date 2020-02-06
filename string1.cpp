@@ -6,6 +6,7 @@
  */
 
 #include <cstring>
+#include <cctype>
 #include "string1.h"
 using std::cin;
 using std::cout;
@@ -47,7 +48,7 @@ String::~String() {						// необходимый конструктор
 
 // Методы перегруженных операций
 // Присваивание объекта String объекту String
-String & String::operator =(const String & st) {
+String & String::operator=(const String & st) {
 	if (this == &st) {
 		return *this;
 	}
@@ -110,7 +111,34 @@ istream & operator>>(istream & is, String & st) {
 	return is;
 }
 
+String operator+(const String & lhs, const String & rhs) {
+	char temp[String::CINLIM]{'\0'};
+	std::strcat(temp, lhs.str);
+	std::strcat(temp, rhs.str);
+	return String(temp);
+}
 
+void String::stringlow() {
+	for (int i = 0; i < len; i++) {
+		str[i] = (char) std::tolower(str[i]);
+	}
+}
+
+void String::stringup() {
+	for (int i = 0; i < len; i++) {
+		str[i] = (char) std::toupper(str[i]);
+	}
+}
+
+int String::chrnum(const char & ch) const {
+	int number = 0;
+	for (int i = 0; i < len; i++) {
+		if (str[i] == ch) {
+			number++;
+		}
+	}
+	return number;
+}
 
 
 

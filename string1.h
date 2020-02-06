@@ -25,6 +25,9 @@ public:
 	String(const String &);			// конструктор копирования
 	~String();
 	int length() const {return len;}
+	void stringlow();				// преобразует все буквы в нижний регистр
+	void stringup();				// преобразует буквы в верхний регистр
+	int chrnum(const char&) const;	// сколько раз встречается символ
 
 	// Методы перегруженных операций
 	String & operator=(const String &);
@@ -38,6 +41,7 @@ public:
 	friend bool operator==(const String &st, const String &st2);
 	friend ostream & operator<<(ostream & os, const String & st);
 	friend istream & operator>>(istream & is, String & st);
+	friend String operator+(const String & lhs, const String & rhs);
 
 	// Статическая функция
 	static int HowMany();
